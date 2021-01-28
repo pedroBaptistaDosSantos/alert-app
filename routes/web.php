@@ -22,5 +22,6 @@ Route::get('new/email', function(){
   $user->name = 'test';
   $user->email='testg2503@gmail.com';
   //return new \App\Mail\newLaravelTips($user);
-  \Illuminate\Support\Facades\Mail::send(new \App\Mail\email($user));
+  App\Jobs\email::dispatch($user)
+                  ->delay(now()->addSeconds(10));
 });
