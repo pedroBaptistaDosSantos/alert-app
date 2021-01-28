@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('new/email', function(){
+  $user = new stdClass();
+  $user->name = 'test';
+  $user->email='testg2503@gmail.com';
+  //return new \App\Mail\newLaravelTips($user);
+  \Illuminate\Support\Facades\Mail::send(new \App\Mail\email($user));
+});
